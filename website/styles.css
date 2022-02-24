@@ -5,7 +5,8 @@
 }
 
 body{
-  background-color: green;
+  background-image: url("uox.jpg");
+
 }
 
 #img{
@@ -39,7 +40,9 @@ input[type=password],input[type=text], select {
 #title{
 
 }
-
+#title_layout{
+  background-color: #4CAF50;
+}
 
 .centered{
   position: absolute;
