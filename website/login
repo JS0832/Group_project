@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Log in</h1>
+    <label for="AccountNumber">Username</label>
+    <input type="email" placeholder="Please enter the email" id = "AccountNumber" >
+    <br>
+    <br>
+    <label for="Password">Password</label>
+    <input type="password" placeholder="Please enter the password" id = "Password">
+    <br>
+    <br>
+    <button  onclick="btnClink1()"><a href="Campus%20Exploration.html">Log in</a></button>
+    <p>Don't have an account?<a href="Register.html">Creat an account</a></p>
+</body>
+<script>
+    var flag = false;
+    var AccountNumber1 = "qqqqqqqqqqqqqq";
+    var Password1 = "qqqqqqqqqqqq";
+    function btnClink1()
+    {
+        if(flag === false)
+        {
+            alert("Please complete registration first");
+        }
+        else
+        {
+            var input1 = document.getElementById("AccountNumber");
+            var input2 = document.getElementById("Password");
+            if(input1.value === AccountNumber1 && input2.value === Password1)
+            {
+                alert("Login successful");
+            }
+            else
+            {
+                alert("Login failed, wrong account or password");
+            }
+        }
+    }
+</script>
+</html>
