@@ -29,8 +29,6 @@ input[type=password],input[type=text], select {
   box-sizing: border-box;
 }
 
-
-
 .userform{
   position: relative;
   text-align: center;
