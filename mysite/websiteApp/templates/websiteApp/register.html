@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
@@ -13,7 +14,7 @@
             <div id = "title_layout">
                   <h1>Create a New Account</h1>
             </div>
-            <img id = "img" src="UOE.gif"  alt="gif" />
+	    <img id = "img" src="{% static 'UOE.gif' %}" alt="gif" />
             <div class ="centered">
                 <h1 id = "loginpos">Register</h1>
                 <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber" size="30">
@@ -22,38 +23,10 @@
                 <br>
                  <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" size="30">
                 <br>
-                <button  onclick="btnClink2()">Register</button>
-                <p>Already have an account? <a href="index.html">Log in</a></p>
+                <button>Register</button>
+		<p>Already have an account? <a href="{% url 'login' %}">Log in</p>
             </div>
 
     </div>
 </body>
-<script>
-    var flag = false;
-    var AccountNumber1 = "qqqqqqqqqqqqqq";
-    var Password1 = "qqqqqqqqqqqq";
-    function btnClink2()
-    {
-        var input1 = document.getElementById("RegisteredAccountNumber");
-        var input2 = document.getElementById("RegisteredPassword");
-        var input3 = document.getElementById("RegisteredPassword1");
-
-        if(input1.value === "Please enter your email" || input1.value === "please enter your password")
-        {
-            alert("The account password cannot be empty");
-        }
-
-        if(input2.value === input3.value)
-        {
-            alert(" Registration successful");
-            flag = true;
-            AccountNumber1 = input1.value;
-            Password1 = input2.value;
-        }
-        else
-        {
-            alert("Registration failed, password different twice");
-        }
-    }
-</script>
 </html>
