@@ -1,46 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Style.css">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Log in</h1>
-    <label for="AccountNumber">Username</label>
-    <input type="email" placeholder="Please enter the email" id = "AccountNumber" >
-    <br>
-    <br>
-    <label for="Password">Password</label>
-    <input type="password" placeholder="Please enter the password" id = "Password">
-    <br>
-    <br>
-    <button  onclick="btnClink1()"><a href="Campus%20Exploration.html">Log in</a></button>
-    <p>Don't have an account?<a href="Register.html">Creat an account</a></p>
-</body>
-<script>
-    var flag = false;
-    var AccountNumber1 = "qqqqqqqqqqqqqq";
-    var Password1 = "qqqqqqqqqqqq";
-    function btnClink1()
-    {
-        if(flag === false)
-        {
-            alert("Please complete registration first");
-        }
-        else
-        {
-            var input1 = document.getElementById("AccountNumber");
-            var input2 = document.getElementById("Password");
-            if(input1.value === AccountNumber1 && input2.value === Password1)
-            {
-                alert("Login successful");
-            }
-            else
-            {
-                alert("Login failed, wrong account or password");
-            }
-        }
-    }
-</script>
+{% load static %}
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+    <title>UOE prototype app</title>
+  </head>
+  <body>
+    <div class ="userform">
+         <div id = "title_layout">
+            <h1>welcome to "unnamed"</h1>
+         </div>
+	 <img id = "img" src="{% static 'UOE.gif' %}"  alt="gif" />
+        <div class ="centered">
+          <h1 id = "loginpos">Login</h1>
+	  <form method="POST" action="{% url 'login' %}" id = "form1">
+          <input type="text" placeholder="Enter Email" id = "AccountNumber"  name="email" size="30" >
+          <br>
+          <input type="password" placeholder="Enter Password" id = "Password"  name="psw" size="30" >
+          <br>
+          <button type="submit" form="form1">Login</button>
+	  </form>
+	  <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+    </div>
+  </body>
 </html>
