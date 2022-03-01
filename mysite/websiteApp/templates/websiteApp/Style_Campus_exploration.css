@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body{
+  background-image: url("uox.jpg");
+}
+a:link, a:visited{
+  text-decoration: none;
+  color: black;
+  display: block;
+  font-weight: bold;
+  background: darkgray;
+  width: 120px;
+  text-align: center;
+  padding: 4px;
+}
+a:hover,a:active{
+  background-color: dimgray;
+}
+
+#img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  filter: blur(2px);
+   -webkit-filter: blur(2px);
+  width: 50%;
+  height: 50%;
+}
+#title_layout{
+  vertical-align: middle;
+  width: 50%;
+  background-color: #4CAF50;
+}
+
+
+.nav{
+  height: 100px;
+  width: 100%;
+  list-style: none none;
+  float: bottom;
+  margin: 20px;
+
+}
+ul li{
+  list-style: none none;
+  float: right;
+  margin: 20px;
+}
+#map{
+  height:auto;
+  width:auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: thin;
+  border-color: black;
+  background-color: black;
+}
+#googleMap{
+  vertical-align: middle;
+  width: 400px;
+  height: 300px;
+}
