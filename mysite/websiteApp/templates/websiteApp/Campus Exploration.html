@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Style_Campus_exploration.css">
+    <title>Campus Exploration</title>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="">Setting</a></li>
+        <li><a href="">Logout</a></li>
+        <li><a href="">Map</a></li>
+        <li><a href="">Game0</a></li>
+        <li><a href="">Game1</a></li>
+        <li><a href="">Home</a></li>
+    </ul>
+            <div id="map"></div>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAncIcVTKQ75ycVVw1fpspEhI3TWk8va2w&callback=initMap">
+                </script>
+                <div id="googleMap">
+                    <script>
+                            function initMap()
+                            {
+                                var options = {
+                                    centre:{lat:50.7184,lng:3.5339},
+                                    zoom:8
+                                }
+                                var map = new
+                                google.maps.Map(document.getElementById('googleMap'),options);
+                            }
+                     </script>
+                </div>
+            
+</body>
+</html>
