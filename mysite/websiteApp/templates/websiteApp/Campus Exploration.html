@@ -6,30 +6,35 @@
     <title>Campus Exploration</title>
 </head>
 <body>
-    <ul class="nav">
-        <li><a href="">Setting</a></li>
-        <li><a href="">Logout</a></li>
-        <li><a href="">Map</a></li>
-        <li><a href="">Game0</a></li>
-        <li><a href="">Game1</a></li>
-        <li><a href="">Home</a></li>
-    </ul>
-            <div id="map"></div>
-                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAncIcVTKQ75ycVVw1fpspEhI3TWk8va2w&callback=initMap">
-                </script>
-                <div id="googleMap">
-                    <script>
-                            function initMap()
-                            {
-                                var options = {
-                                    centre:{lat:50.7184,lng:3.5339},
-                                    zoom:8
-                                }
-                                var map = new
-                                google.maps.Map(document.getElementById('googleMap'),options);
+    <div id = "list"> 
+        <ul class="nav">
+            <li><a href="">Setting</a></li>
+            <li><a href="">Logout</a></li>
+            <li><a href="">Map</a></li>
+            <li><a href="">Game0</a></li>
+            <li><a href="">Game1</a></li>
+            <li><a href="">Home</a></li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="map"></div>
+                <script>
+                        function initMap()
+                        {
+                            var options = {
+                                zoom:8,
+                                centre:{lat:50.7184,lng:3.5339}
+                                 
                             }
-                     </script>
-                </div>
+                            var map = new
+                            google.maps.Map(document.getElementById('map'),options);
+                        }
+                    </script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoQVVZb0-hZ9qn_Wgp9WpbgrCkwkylsVQ&callback=initMap"></script>
+        
             
 </body>
 </html>
