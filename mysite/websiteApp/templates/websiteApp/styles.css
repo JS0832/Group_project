@@ -32,18 +32,17 @@ input[type=password],input[type=text],input[type=email], select {
 .userform{
   position: relative;
   text-align: center;
-}
-
-#title{
 
 }
+
 #title_layout{
-  vertical-align: middle;
-  width: 50%;
-  background-color: #4CAF50;
+  
+  
 }
 
 .centered{
+
+
   position: absolute;
   top: 50%;
   left: 50%;
