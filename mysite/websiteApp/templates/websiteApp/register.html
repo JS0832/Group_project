@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+ <h1>Register</h1>
+    <label for="RegisteredAccountNumber">Username</label>
+    <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber"  >
+    <br>
+    <br>
+    <label for="RegisteredPassword">Password</label>
+    <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" >
+    <br>
+    <br>
+    <label for="RegisteredPassword1">Password</label>
+    <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" >
+    <br>
+    <br>
+    <button  onclick="btnClink2()">Register</button>
+    <p>Already have an account? <a href="Login.html">Log in</a></p>
+</body>
+<script>
+    var flag = false;
+    var AccountNumber1 = "qqqqqqqqqqqqqq";
+    var Password1 = "qqqqqqqqqqqq";
+    function btnClink2()
+    {
+        var input1 = document.getElementById("RegisteredAccountNumber");
+        var input2 = document.getElementById("RegisteredPassword");
+        var input3 = document.getElementById("RegisteredPassword1");
+
+        if(input1.value === "Please enter your email" || input1.value === "please enter your password")
+        {
+            alert("The account password cannot be empty");
+        }
+
+        if(input2.value === input3.value)
+        {
+            alert(" Registration successful");
+            flag = true;
+            AccountNumber1 = input1.value;
+            Password1 = input2.value;
+        }
+        else
+        {
+            alert("Registration failed, password different twice");
+        }
+    }
+</script>
+</html>

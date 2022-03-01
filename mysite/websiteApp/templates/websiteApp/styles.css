@@ -1,0 +1,70 @@
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background-image: url("uox.jpg");
+
+}
+
+#img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  filter: blur(2px);
+   -webkit-filter: blur(2px);
+  width: 50%;
+  height: 50%;
+}
+input[type=password],input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.userform{
+  position: relative;
+  text-align: center;
+}
+
+#title{
+
+}
+#title_layout{
+  vertical-align: middle;
+  width: 50%;
+  background-color: #4CAF50;
+}
+
+.centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+#loginpos{
+  color: green;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  margin:4px;
+  width: 45%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
