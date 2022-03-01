@@ -2,27 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
 <body>
- <h1>Register</h1>
-    <label for="RegisteredAccountNumber">Username</label>
-    <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber"  >
-    <br>
-    <br>
-    <label for="RegisteredPassword">Password</label>
-    <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" >
-    <br>
-    <br>
-    <label for="RegisteredPassword1">Password</label>
-    <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" >
-    <br>
-    <br>
-    <button  onclick="btnClink2()">Register</button>
-    <p>Already have an account? <a href="Login.html">Log in</a></p>
+    <div class ="userform">
+            <img id = "img" src="UOE.gif"  alt="description of gif" />
+            <div class ="centered">
+            <h1 id = "loginpos">Register</h1>
+                <label for="RegisteredAccountNumber">Username</label>
+                <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber"  >
+                <br>
+                <br>
+                    <label for="RegisteredPassword">Password</label>
+                    <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" >
+                <br>
+                <br>
+                    <label for="RegisteredPassword1">Password</label>
+                    <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" >
+                <br>
+                <br>
+                    <button  onclick="btnClink2()">Register</button>
+                    <p>Already have an account? <a href="index.html">Log in</a></p>
+            </div>
+
+    </div>
 </body>
 <script>
     var flag = false;
