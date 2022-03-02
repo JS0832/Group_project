@@ -5,10 +5,13 @@
 # code and also improve readability of views.
 # Add functions as necessary!
 
-def stringComparison(stringA, stringB):
-        # Compares two strings, if they are the same when all unnecessary characters
-        # Are removed, this returs true. Else false.
+def stringComparison(stringA: str, stringB: str) -> bool:
+    """Compares two strings, removing some character, returns True if the same
 
+    Keyword Arguments:
+    stringA : str
+    stringB : str
+    """
     characterToRemove = [" ", "-", ",", "."]
         #Any character that may cause discrepancies between correct inputs.
 
