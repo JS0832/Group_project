@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'Style.css' %}">
     <title>Location</title>
     <script>
     window.onload=function (){
@@ -12,7 +13,7 @@
         img.style.width="32px";
         img.style.height="24px"
         img.style.top="10px"
-        img.src="red dot.jpeg"
+        img.src="{% static 'red_dot.png' %}"
 
         var btn0=document.getElementById("btn0");
         btn0.addEventListener("click",function(){
@@ -47,26 +48,26 @@
     </script>
 <div id="nav">
     <ul class="nav">
-        <li><a href="Setting.html">Setting</a></li>
-        <li><a href="Login.html">Logout</a></li>
-        <li><a href="Location.html">Location</a></li>
-        <li><a href="Introduce.html">Introduction</a></li>
-        <li><a href="Game.html">Game</a></li>
-        <li><a href="Campus%20Exploration.html">Home</a></li>
+        <li><a href="{% url 'settings' %}">Settings</a></li>
+        <li><a href="{% url 'login' %}">Logout</a></li>
+        <li><a href="{% url 'location' %}">Location</a></li>
+        <li><a href="{% url 'introduce' %}">Introduction</a></li>
+        <li><a href="{% url 'game' %}">Game</a></li>
+        <li><a href="{% url 'campus_exploration' %}">Home</a></li>
     </ul>
 </div>>
 <div id="googleMap">
-    <img id ="backupimg" src="map.png" alt="img">
+    <img id ="backupimg" src="{% static 'map.png' %}" alt="img">
 
 </div>
-<img id="img" src="red%20dot.jpeg" alt="img">
+<img id="img" src="{% static 'red_dot.png' %}" alt="img">
     <button id="btn0">Move Image</button>
     <button id="btn1">Move bottom</button>
     <button id="btn2">Move left</button>
     <button id="btn3">Move right</button>
 <div id ="riddle">
     <h1>ggg</h1>
- <p>{%  %}</p>
+ <!-- <p></p> -->
 </div>
 <!--
 <script>

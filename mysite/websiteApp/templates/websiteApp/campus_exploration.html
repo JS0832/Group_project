@@ -1,19 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Style_Campus_exploration.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'Style_Campus_exploration.css' %}">
     <title>Campus Exploration</title>
 </head>
 <body>
     <div id = "list"> 
         <ul class="nav">
-            <li><a href="">Setting</a></li>
-            <li><a href="">Logout</a></li>
-            <li><a href="">Map</a></li>
-            <li><a href="">Game0</a></li>
-            <li><a href="">Game1</a></li>
-            <li><a href="">Home</a></li>
+            <li><a href="{% url 'settings' %}">Settings</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+            <li><a href="{% url 'location' %}">Location</a></li>
+            <li><a href="{% url 'introduce' %}">Introduction</a></li>
+            <li><a href="{% url 'game' %}">Game</a></li>
+            <li><a href="{% url 'campus_exploration' %}">Home</a></li>
         </ul>
     </div>
     <br>
