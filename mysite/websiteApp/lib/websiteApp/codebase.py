@@ -5,6 +5,8 @@
 # code and also improve readability of views.
 # Add functions as necessary!
 
+from websiteApp.models import Riddles
+
 def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",",","."]) -> bool:
     """Compares two strings, removing some characters.
     Returns True if the same
@@ -21,8 +23,8 @@ def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",","
         stringA = stringA.replace(character, '')
         stringB = stringB.replace(character, '')
     
-    if stringA.lower() == stringB.lower():
-        return True
-    else:
-        return False
-    
+    return stringA.lower() == stringB.lower()
+
+def riddleCheck(riddle: Riddles,player_response: str) -> bool:
+    return stringComparison(riddle.answer, player_response)
+
