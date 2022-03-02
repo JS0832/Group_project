@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+import libraries.websiteApp.codebase as game
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
