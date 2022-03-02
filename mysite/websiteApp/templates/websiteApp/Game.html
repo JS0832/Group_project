@@ -1,18 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'Style.css' %}">
     <title>Game</title>
 </head>
 <body>
     <ul class="nav">
-        <li><a href="Setting.html">Setting</a></li>
-        <li><a href="Login.html">Logout</a></li>
-        <li><a href="Location.html">Location</a></li>
-        <li><a href="Introduce.html">Introduction</a></li>
-        <li><a href="Game.html">Game</a></li>
-        <li><a href="Campus%20Exploration.html">Home</a></li>
+        <!-- Do not add .html! Django does not work with it-->
+        <li><a href="{% url 'settings' %}">Settings</a></li>
+        <li><a href="{% url 'login' %}">Logout</a></li>
+        <li><a href="{% url 'location' %}">Location</a></li>
+        <li><a href="{% url 'introduce' %}">Introduction</a></li>
+        <li><a href="{% url 'game' %}">Game</a></li>
+        <li><a href="{% url 'campus_exploration' %}">Home</a></li>
     </ul>
 
 </body>
