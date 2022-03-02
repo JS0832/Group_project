@@ -15,7 +15,7 @@ python manage.py runserver
 This should run the website on your machine. We have our settings configured so that
 the default address and port for the local host is "127.0.0.1:8000". However, this does
 not bring you to the website application. This can be found at "127.0.0.1:8000/websiteApp".
-From there, navigation is yet to be configured, so go to "127.0.0.1:8000/websiteApp/game"
+From there, as navigation is yet to be configured, so go to "127.0.0.1:8000/websiteApp/game"
 to access the riddles.
 
 To manage the riddles stored within the database, as well as permissions of users, navigate
