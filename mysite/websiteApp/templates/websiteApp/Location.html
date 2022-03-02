@@ -2,15 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" type="text/css" href="Style_Campus_exploration.css">
+    <link rel="stylesheet" type="text/css" href="Style.css">
     <title>Location</title>
+    <script>
+    window.onload=function (){
+        var img= document.getElementById("img");
+        img.style.position="relative";
+        img.style.display= "block";
+        img.style.width="32px";
+        img.style.height="24px"
+        img.style.top="10px"
+        img.src="red dot.jpeg"
+
+        var btn0=document.getElementById("btn0");
+        btn0.addEventListener("click",function(){
+            var oldPosition=img.style.top.split("px")[0];
+            var newPosition=Number(oldPosition)-5;
+            img.style.top=newPosition+"px"
+        });
+        var btn1=document.getElementById("btn1");
+        btn1.addEventListener("click",function(){
+            var oldPosition=img.style.top.split("px")[0];
+            var newPosition=Number(oldPosition)+5;
+            img.style.top=newPosition+"px"
+        });
+        var btn2=document.getElementById("btn2");
+        btn2.addEventListener("click",function(){
+            var oldPosition=img.style.left.split("px")[0];
+            var newPosition=Number(oldPosition)-5;
+            img.style.left=newPosition+"px"
+        });
+        var btn3=document.getElementById("btn3");
+        btn3.addEventListener("click",function(){
+            var oldPosition=img.style.left.split("px")[0];
+            var newPosition=Number(oldPosition)+5;
+            img.style.left=newPosition+"px"
+        });
+    }
+</script>
 </head>
 <body>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAncIcVTKQ75ycVVw1fpspEhI3TWk8va2w&callback=initMap">
 
     </script>
-<div id="googleMap"></div>
+<div id="nav">
+    <ul class="nav">
+        <li><a href="Setting.html">Setting</a></li>
+        <li><a href="Login.html">Logout</a></li>
+        <li><a href="Location.html">Location</a></li>
+        <li><a href="Introduce.html">Introduction</a></li>
+        <li><a href="Game.html">Game</a></li>
+        <li><a href="Campus%20Exploration.html">Home</a></li>
+    </ul>
+</div>>
+<div id="googleMap">
+    <img id ="backupimg" src="map.png" alt="img">
+
+</div>
+<img id="img" src="red%20dot.jpeg" alt="img">
+    <button id="btn0">Move Image</button>
+    <button id="btn1">Move bottom</button>
+    <button id="btn2">Move left</button>
+    <button id="btn3">Move right</button>
+<div id ="riddle">
+    <h1>ggg</h1>
+ <p>{%  %}</p>
+</div>
+<!--
 <script>
         function initMap()
         {
@@ -22,6 +80,8 @@
             google.maps.Map(document.getElementById("googleMap"),options);
         }
     </script>
+
+-->
 </body>
 
 </html>
