@@ -35,32 +35,32 @@ a:hover,a:active{
   background-color: #4CAF50;
 }
 
-
-.nav{
-  height: 100px;
-  width: 100%;
-  list-style: none none;
-  float: bottom;
-  margin: 20px;
-
+#list{
+  position: absolute;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  width: 80%;
+  height: 50%;
+  
 }
+
+
+
+
 ul li{
   list-style: none none;
-  float: right;
-  margin: 20px;
+  margin:10px;
+  float:right;
 }
 #map{
+  align-content: center;
   height:auto;
   width:auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-width: thin;
-  border-color: black;
-  background-color: black;
-}
-#googleMap{
-  vertical-align: middle;
   width: 400px;
   height: 300px;
 }
