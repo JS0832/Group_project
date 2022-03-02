@@ -17,5 +17,29 @@
         <li><a href="{% url 'campus_exploration' %}">Home</a></li>
     </ul>
 
+    <div id="googleMap">
+        <img id ="backupimg" src="{% static 'map.png' %}" alt="img">
+    </div>
+    
+    <div id="riddle">
+    {% if not_done_riddle %}
+        {% if answer_wrong %}
+            <h2>Not quite. Give it another shot!</h2>
+        {% else %}
+            <h2>Lets see if you can get it first try!</h2>
+        {% endif %}
+        <h3>{{ riddle_text|linebreaks }}</h3>
+        <form method="POST" action="{% url 'game' %}" id = "form1">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter Answer" id = "answer"  name="answer" size="30" >
+            <button type="submit" form="form1">Check!</button>
+        </form>
+        <br>
+    {% else %}
+        <h2> Good Job! <br>
+            You've already done your riddle today! <br>
+            You're clearly an overachiever!
+    {% endif %}
+    <div>
 </body>
 </html>

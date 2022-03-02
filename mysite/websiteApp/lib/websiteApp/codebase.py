@@ -26,5 +26,13 @@ def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",","
     return stringA.lower() == stringB.lower()
 
 def riddleCheck(riddle: Riddles,player_response: str) -> bool:
+    """Checks if the resonse to a riddle is the correct answer
+
+
+    riddle: Riddle
+        That the answer is to be checked against
+    player_responce: str
+        The users response to the riddle
+    """
     return stringComparison(riddle.answer, player_response)
 
