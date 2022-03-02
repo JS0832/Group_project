@@ -12,7 +12,7 @@ then execute the following command.
 
 python manage.py runserver
 
-This should run the website on your machine. We have our settings configures so that
+This should run the website on your machine. We have our settings configured so that
 the default address and port for the local host is "127.0.0.1:8000". However, this does
 not bring you to the website application. This can be found at "127.0.0.1:8000/websiteApp".
 From there, navigation is yet to be configured, so go to "127.0.0.1:8000/websiteApp/game"
@@ -22,4 +22,4 @@ To manage the riddles stored within the database, as well as permissions of user
 through your browser to "127.0.0.1:8000/admin" and login as your Django superuser.
 
 All members were present during the creation of this WebApp, and all contributed to the
-dicussion and to the implementation of the ideas.
+discussion and to the implementation of the ideas.
