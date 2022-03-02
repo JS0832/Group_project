@@ -3,8 +3,6 @@ from django.shortcuts import render
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
-
-    #Something random
     return render(request, 'websiteApp/login.html')
 
 def login(request):
