@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Riddles
 import websiteApp.lib.websiteApp.codebase as gameBase
 
 def index(request):
@@ -13,7 +14,24 @@ def register(request):
     return render(request, 'websiteApp/register.html')
 
 def game(request):
-    return render(request, 'websiteApp/game.html')
+    riddle = Riddles.objects.order_by('pk')[0]
+    not_done_riddle = True
+    answer_wrong = False
+    riddle_text = riddle.question
+
+    if request.method == 'POST':
+        response = request.POST['answer']
+        if gameBase.riddleCheck(riddle, response):
+            not_done_riddle = False
+        else:
+            answer_wrong = True
+
+    context = {
+        'not_done_riddle': not_done_riddle,
+        'answer_wrong': answer_wrong,
+        'riddle_text': riddle_text,
+    }
+    return render(request, 'websiteApp/game.html', context)
 
 def location(request):
     return render(request, 'websiteApp/location.html')
