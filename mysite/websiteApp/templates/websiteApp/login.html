@@ -17,6 +17,7 @@
         <div class ="centered">
           <h1 id = "loginpos">Login</h1>
 	  <form method="POST" action="{% url 'login' %}" id = "form1">
+	  {% csrf_token %}	
           <input type="text" placeholder="Enter Email" id = "AccountNumber"  name="email" size="30" >
           <br>
           <input type="password" placeholder="Enter Password" id = "Password"  name="psw" size="30" >
