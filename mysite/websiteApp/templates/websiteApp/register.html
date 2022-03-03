@@ -17,13 +17,18 @@
 	    <img id = "img" src="{% static 'UOE.gif' %}" alt="gif" />
             <div class ="centered">
                 <h1 id = "loginpos">Register</h1>
-                <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber" size="30">
+            <form method="POST" action="{% url 'register' %}" id="RegisterForm">
+                {% csrf_token %}
+                <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber" size="30" required>
+                <br>
+                <input type="text" placeholder="Please enter your name" id = "RegisteredUsername" size="30" required>
                 <br> 
-                <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" size="30">
+                <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" size="30" required>
                 <br>
-                 <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" size="30">
+                 <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" size="30" required>
                 <br>
-                <button>Register</button>
+                <button type="submit">Register</button>
+            </form>
 		<p>Already have an account? <a href="{% url 'login' %}">Log in</p>
             </div>
 

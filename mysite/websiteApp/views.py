@@ -1,15 +1,49 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import websiteApp.lib.websiteApp.codebase as gameBase
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
     return render(request, 'websiteApp/login.html')
 
 def login(request):
+
+    if request.method == "POST":
+        username = request.POST.get("AccountNumber")
+        password = request.POST.get("Password")
+
+        user = authenticate(username="AccountNumber", password="Password")
+
+        if user is not None: 
+            login(request, user)
+            return render (request, 'websiteApp/game.html')
+
+        else:
+            messages.error(request, "Bad Credentials")
+            return redirect ("login")
+
     return render(request, 'websiteApp/login.html')
 
 def register(request):
+    #Taking the post method of the registration
+    if request.method == "POST":
+        email = request.POST.get("RegisteredAccountNumber")
+        username = request.POST.get("RegisteredUsername")
+        password = request.POST.get("RegisteredPassword")
+        password_repeat = request.POST.get("RegisteredPassword1")
+
+        #Creating the user object
+        myuser = User.objects.create_user(username=username, email=email, password=password)
+        myuser.save()
+        
+        #Temporary success message, subject to change
+        messages.success(request, "Your account has successfully been created.")
+
+        return redirect("login")
+
     return render(request, 'websiteApp/register.html')
 
 def game(request):
