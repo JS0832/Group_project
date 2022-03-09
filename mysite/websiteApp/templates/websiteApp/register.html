@@ -2,6 +2,10 @@
 {% load static %}
 <html lang="en">
 <head>
+    {% if logged_in %}
+    <meta http-equiv="refresh" content="0; URL={% url 'game' %}" />
+        <!-- TODO: set up main page and navigate there -->
+    {% endif %}
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,14 +21,30 @@
 	    <img id = "img" src="{% static 'UOE.gif' %}" alt="gif" />
             <div class ="centered">
                 <h1 id = "loginpos">Register</h1>
-                <input type="email" placeholder="Please enter the email" id = "RegisteredAccountNumber" size="30">
-                <br> 
-                <input type="password" placeholder="Please enter the password" id = "RegisteredPassword" size="30">
-                <br>
-                 <input type="password" placeholder="Please ensure the password" id = "RegisteredPassword1" size="30">
-                <br>
-                <button>Register</button>
-		<p>Already have an account? <a href="{% url 'login' %}">Log in</p>
+
+                {% if not_available %}
+                <h5 style="color:red"> Error: Username or email not available </h5> 
+                <!-- TODO: Change colour as fits-->
+                {% endif %}
+
+                {% if password_not_same %}
+                <h5 style="color:red"> Error: Passwords were not identical </h5> 
+                <!-- TODO: Change colour as fits-->
+                {% endif %}
+
+                <form method="POST" action="{% url 'register' %}" id = "form1">
+                    {% csrf_token %}	
+                    <input type="email" placeholder="Please enter the email" id="email" name="email" size="30">
+                    <br> 
+                    <input type="text" placeholder="Please enter the username" id="username" name="username" size="30">
+                    <br> 
+                    <input type="password" placeholder="Please enter the password" id="password1" name="password1" size="30">
+                    <br>
+                    <input type="password" placeholder="Please ensure the password" id="password2" name="password2" size="30">
+                    <br>
+                    <button type="submit" form="form1">Register</button>
+                </form>
+		    <p>Already have an account? <a href="{% url 'login' %}">Log in</p>
             </div>
 
     </div>

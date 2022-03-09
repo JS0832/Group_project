@@ -1,13 +1,29 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, UserManager, User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-class User(models.Model):
-    username = models.CharField(max_length=30)
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    total_points = models.IntegerField()
-    game_master = models.BooleanField()
+# Created with help from:
+# https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    total_points = models.IntegerField(default=0)
+    game_master = models.BooleanField(default=False)
+
     
-class Riddles(models.Model):
+#Taken from:
+#https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+    
+
+class Riddle(models.Model):
     question = models.TextField(max_length=250)
     answer = models.CharField(max_length=200)
     time = models.DateTimeField('date published')
