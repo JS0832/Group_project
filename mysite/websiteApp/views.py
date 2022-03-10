@@ -1,5 +1,4 @@
 from msilib.schema import ControlEvent
-import re
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
