@@ -11,16 +11,20 @@ def index(request):
 
 def login(request):
 
+    #Obtains information from login page
     if request.method == "POST":
         username = request.POST.get("AccountNumber")
         password = request.POST.get("Password")
 
+        #authenticate user against existing login credentials
         user = authenticate(username="AccountNumber", password="Password")
 
+        #If the login exists, logs in. Sends user to game.html
         if user is not None: 
             login(request, user)
             return render (request, 'websiteApp/game.html')
 
+        #Else, posts a error message and redirects the user to the login page once again
         else:
             messages.error(request, "Bad Credentials")
             return redirect ("login")
@@ -36,8 +40,9 @@ def register(request):
         password_repeat = request.POST.get("RegisteredPassword1")
 
         #Creating the user object
-        myuser = User.objects.create_user(username=username, email=email, password=password)
-        myuser.save()
+        #Need to save to database
+        #myuser = User.objects.create_user(username=username, email=email, password=password)
+        #myuser.save()
         
         #Temporary success message, subject to change
         messages.success(request, "Your account has successfully been created.")
