@@ -1,5 +1,15 @@
+from msilib.schema import ControlEvent
+import re
+from django.db import IntegrityError
 from django.http import HttpResponse
+<<<<<<< HEAD
 from django.shortcuts import redirect, render
+=======
+from django.shortcuts import render
+from .models import *
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import AbstractBaseUser, UserManager
+>>>>>>> bf1dfee1f21877b6243cdbfd1ad02d34ebeaccbe
 import websiteApp.lib.websiteApp.codebase as gameBase
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -10,49 +20,73 @@ def index(request):
     return render(request, 'websiteApp/login.html')
 
 def login(request):
-
-    #Obtains information from login page
-    if request.method == "POST":
-        username = request.POST.get("AccountNumber")
-        password = request.POST.get("Password")
-
-        #authenticate user against existing login credentials
-        user = authenticate(username="AccountNumber", password="Password")
-
-        #If the login exists, logs in. Sends user to game.html
-        if user is not None: 
-            login(request, user)
-            return render (request, 'websiteApp/game.html')
-
-        #Else, posts a error message and redirects the user to the login page once again
+    context = {}
+    if request.method == 'POST':
+        #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
+        given_username = request.POST.get('username')
+        given_password = request.POST.get('password')
+        user = authenticate(email=given_username, password=given_password)
+            # /\ Something isnt working here, look into
+        if user is not None:
+            request.session['username']= user.username
+            request.session['logged_in'] = True
         else:
-            messages.error(request, "Bad Credentials")
-            return redirect ("login")
+            context['invalid_login'] = True
 
-    return render(request, 'websiteApp/login.html')
+    context['logged_in'] = request.session.get('logged_in', False)
+    return render(request, 'websiteApp/login.html', context)
 
 def register(request):
-    #Taking the post method of the registration
-    if request.method == "POST":
-        email = request.POST.get("RegisteredAccountNumber")
-        username = request.POST.get("RegisteredUsername")
-        password = request.POST.get("RegisteredPassword")
-        password_repeat = request.POST.get("RegisteredPassword1")
+    context = {}
 
-        #Creating the user object
-        #Need to save to database
-        #myuser = User.objects.create_user(username=username, email=email, password=password)
-        #myuser.save()
-        
-        #Temporary success message, subject to change
-        messages.success(request, "Your account has successfully been created.")
+    if request.method == 'POST':
+        #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
+        passwordA = request.POST.get('password1')
+        passwordB = request.POST.get('password2')
 
-        return redirect("login")
+        if passwordA == passwordB:
+            given_username = request.POST.get('username')
+            given_email = request.POST.get('email')
+            try:
+                user = User.objects.create_user(   
+                                            username=given_username,
+                                            email=given_email,
+                                            password=passwordA,
+                                            )
+                user.save()
+                request.session['username'] = user.username
+                request.session['logged_in'] = True
 
-    return render(request, 'websiteApp/register.html')
+            except IntegrityError:
+                context['not_available'] = True
+
+        else:
+            context['password_not_same'] = True
+
+    context['logged_in'] = request.session.get('logged_in', False)
+    return render(request, 'websiteApp/register.html', context)
 
 def game(request):
-    return render(request, 'websiteApp/game.html')
+    riddle = Riddle.objects.order_by('pk')[0]
+        # Just picks the first one, TODO: change daily
+    not_done_riddle = True
+    answer_wrong = False
+    riddle_text = riddle.question
+
+    if request.method == 'POST':
+        #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
+        response = request.POST.get('answer')
+        if gameBase.riddleCheck(riddle, response):
+            not_done_riddle = False
+        else:
+            answer_wrong = True
+
+    context = {
+        'not_done_riddle': not_done_riddle,
+        'answer_wrong': answer_wrong,
+        'riddle_text': riddle_text,
+    }
+    return render(request, 'websiteApp/game.html', context)
 
 def location(request):
     return render(request, 'websiteApp/location.html')
@@ -68,3 +102,28 @@ def settings(request):
 
 def introduce(request):
     return HttpResponse(request, "Introduction TODO")
+
+#DEBUG FUNCTION
+
+# https://gist.github.com/defrex/6140951
+def pretty_request(request):
+    headers = ''
+    for header, value in request.META.items():
+        if not header.startswith('HTTP'):
+            continue
+        header = '-'.join([h.capitalize() for h in header[5:].lower().split('_')])
+        headers += '{}: {}\n'.format(header, value)
+
+    return (
+        '{method} HTTP/1.1\n'
+        'Content-Length: {content_length}\n'
+        'Content-Type: {content_type}\n'
+        '{headers}\n\n'
+        '{body}'
+    ).format(
+        method=request.method,
+        content_length=request.META['CONTENT_LENGTH'],
+        content_type=request.META['CONTENT_TYPE'],
+        headers=headers,
+        body=request.body,
+    )
