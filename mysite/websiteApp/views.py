@@ -2,14 +2,9 @@ from msilib.schema import ControlEvent
 import re
 from django.db import IntegrityError
 from django.http import HttpResponse
-<<<<<<< HEAD
-from django.shortcuts import redirect, render
-=======
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractBaseUser, UserManager
->>>>>>> bf1dfee1f21877b6243cdbfd1ad02d34ebeaccbe
 import websiteApp.lib.websiteApp.codebase as gameBase
 from django.contrib.auth.models import User
 from django.contrib import messages
