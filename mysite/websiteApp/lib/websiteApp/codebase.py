@@ -5,7 +5,7 @@
 # code and also improve readability of views.
 # Add functions as necessary!
 
-from websiteApp.models import Riddle
+from websiteApp.models import *
 
 def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",",","."]) -> bool:
     """Compares two strings, removing some characters.
@@ -26,13 +26,36 @@ def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",","
     return stringA.lower() == stringB.lower()
 
 def riddleCheck(riddle: Riddle,player_response: str) -> bool:
-    """Checks if the resonse to a riddle is the correct answer
-
+    """Checks if the resonse to a riddle is the correct answer. 
+    Returns true if correct
 
     riddle: Riddle
         That the answer is to be checked against
-    player_responce: str
+    player_response: str
         The users response to the riddle
     """
     return stringComparison(riddle.answer, player_response)
 
+def awardPoints(username: str, points: int) -> bool:
+    """Awards points to a selected user
+    Returns true if applied
+
+    username: str
+        The username of the user to add points
+    points: int
+        the ammount of points awarded
+    """
+    applied = False
+    user = User.objects.get(username=username)
+        # get the users database insert
+
+    if user is not None:
+        retrievedPoints = user.profile.total_points
+            # Retrieve points from the database
+        user.profile.total_points = retrievedPoints + points
+            # Add the points given
+        user.save()
+            # Apply changes
+        applied = True
+
+    return applied

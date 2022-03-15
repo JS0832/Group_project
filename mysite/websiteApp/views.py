@@ -19,7 +19,6 @@ def login(request):
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
         user = authenticate(email=given_username, password=given_password)
-            # /\ Something isnt working here, look into
         if user is not None:
             request.session['username']= user.username
             request.session['logged_in'] = True
