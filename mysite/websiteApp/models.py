@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, UserManager, User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+# Access through User.profile.(field)
 # Created with help from:
 # https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
 class Profile(models.Model):
