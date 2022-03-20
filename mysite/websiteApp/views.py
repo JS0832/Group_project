@@ -1,18 +1,19 @@
-from msilib.schema import ControlEvent
-import re
+"""Views within Django structure, each function returns a HTML render
+of a website page"""
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import *
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import AbstractBaseUser, UserManager
 import websiteApp.lib.websiteApp.codebase as gameBase
+from .models import *
 
 def index(request):
+    """Invoke to return HTML render of index page"""
     # Render simply returns the html, add contect for personalised changes
     return render(request, 'websiteApp/login.html')
 
 def login(request):
+    """Invoke to return HTML render of login page"""
     context = {}
     if request.method == 'POST':
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
@@ -29,21 +30,22 @@ def login(request):
     return render(request, 'websiteApp/login.html', context)
 
 def register(request):
+    """Invoke to return HTML render of register page"""
     context = {}
 
     if request.method == 'POST':
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
-        passwordA = request.POST.get('password1')
-        passwordB = request.POST.get('password2')
+        password_a = request.POST.get('password1')
+        password_b = request.POST.get('password2')
 
-        if passwordA == passwordB:
+        if password_a == password_b:
             given_username = request.POST.get('username')
             given_email = request.POST.get('email')
             try:
-                user = User.objects.create_user(   
+                user = User.objects.create_user(
                                             username=given_username,
                                             email=given_email,
-                                            password=passwordA,
+                                            password=password_a,
                                             )
                 user.save()
                 request.session['username'] = user.username
@@ -59,6 +61,7 @@ def register(request):
     return render(request, 'websiteApp/register.html', context)
 
 def game(request):
+    """Invoke to return HTML render of game page"""
     riddle = Riddle.objects.order_by('pk')[0]
         # Just picks the first one, TODO: change daily
     not_done_riddle = True
@@ -81,24 +84,33 @@ def game(request):
     return render(request, 'websiteApp/game.html', context)
 
 def location(request):
+    """Invoke to return HTML render of location page"""
     return render(request, 'websiteApp/location.html')
 
 def campus_exploration(request):
+    """Invoke to return HTML render of campus ecploration page"""
     return render(request, 'websiteApp/campus_exploration.html')
 
 def main(request):
+    """Invoke to return HTML render of main page"""
     return render(request, 'websiteApp/main.html')
 
 def settings(request):
+    """Invoke to return HTML render of settings page"""
     return HttpResponse(request, "Settings TODO")
 
 def introduce(request):
+    """Invoke to return HTML render of introduction page"""
     return HttpResponse(request, "Introduction TODO")
 
 #DEBUG FUNCTION
 
 # https://gist.github.com/defrex/6140951
 def pretty_request(request):
+    """Turns the HTTP request into a readable string
+
+    Paramters:
+    request : HTTP Request"""
     headers = ''
     for header, value in request.META.items():
         if not header.startswith('HTTP'):
