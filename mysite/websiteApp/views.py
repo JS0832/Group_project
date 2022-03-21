@@ -4,9 +4,10 @@ from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 import websiteApp.lib.websiteApp.codebase as gameBase
+
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
@@ -57,6 +58,10 @@ def register(request):
 
     context['logged_in'] = request.session.get('logged_in', False)
     return render(request, 'websiteApp/register.html', context)
+
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
 
 def game(request):
     riddle = Riddle.objects.order_by('pk')[0]
