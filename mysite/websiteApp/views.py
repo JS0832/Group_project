@@ -16,17 +16,25 @@ def login(request):
     """Invoke to return HTML render of login page"""
     context = {}
     if request.method == 'POST':
+        # If the user submits a post request they must be trying to log in
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
-        user = authenticate(email=given_username, password=given_password)
+            # Get the varaibles from the fields from within the post request
+
+        user = authenticate(username=given_username, password=given_password)
+            # Retrieve the user with the username and the password as provided
+            # Will return None if a user is not found
         if user is not None:
             request.session['username']= user.username
             request.session['logged_in'] = True
+                # Assign session variables to the users session, retains login acros pages
         else:
             context['invalid_login'] = True
+                # The login is invalid, supply context the be imbedded in HTML
 
     context['logged_in'] = request.session.get('logged_in', False)
+        # Find if they successfully logged in, if it cant be found, the default is false
     return render(request, 'websiteApp/login.html', context)
 
 def register(request):
@@ -34,30 +42,42 @@ def register(request):
     context = {}
 
     if request.method == 'POST':
+        # If a post is sent, the user attempted to create an account
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         password_a = request.POST.get('password1')
         password_b = request.POST.get('password2')
+            # Retrieve the two passwords for comparison
 
         if password_a == password_b:
+            # If the two passwords are identical
+
             given_username = request.POST.get('username')
             given_email = request.POST.get('email')
+                # Retrieve the username and email from the HTML form
             try:
+                # Attempt to do the following
                 user = User.objects.create_user(
                                             username=given_username,
                                             email=given_email,
                                             password=password_a,
                                             )
+                    # Tries to create new user with unique username
                 user.save()
                 request.session['username'] = user.username
                 request.session['logged_in'] = True
+                    # Update session variables so other pages know logged in
 
             except IntegrityError:
+                # If the username is already in use, thus cant be unique
                 context['not_available'] = True
 
         else:
+            # The passwords were not the same
             context['password_not_same'] = True
+                #Notify the HTML that passwords were not the same
 
     context['logged_in'] = request.session.get('logged_in', False)
+        # Find if they successfully logged in, if it cant be found, the default is false
     return render(request, 'websiteApp/register.html', context)
 
 def game(request):
@@ -67,12 +87,21 @@ def game(request):
     not_done_riddle = True
     answer_wrong = False
     riddle_text = riddle.question
+        # Retrieves the text from the riddle database
 
     if request.method == 'POST':
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         response = request.POST.get('answer')
-        if gameBase.riddleCheck(riddle, response):
+            # Retrieve the given answer from the HTML form
+        if gameBase.riddle_check(riddle, response):
+            #If the users response is the same as the riddle answer
+            if request.session['username'] is not None:
+                # /\ Can use logged in session. Talk about which is best
+                # If the user is logged in
+                gameBase.award_points(request.session['username'], 100)
+                    #Potentially vary points, do so here
             not_done_riddle = False
+
         else:
             answer_wrong = True
 

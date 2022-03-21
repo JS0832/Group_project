@@ -1,3 +1,4 @@
+"""Codebase for Group Engineering Software Project"""
 # Use "import libraries.websiteApp.codebase as game" on views!
 
 # This is the functions used for the games within the websiteApp
@@ -7,7 +8,7 @@
 
 from websiteApp.models import *
 
-def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",",","."]) -> bool:
+def string_comparison(string_a: str, string_b: str, char_remove: list = [" ","-",",","."]) -> bool:
     """Compares two strings, removing some characters.
     Returns True if the same
 
@@ -18,15 +19,15 @@ def stringComparison(stringA: str, stringB: str, charRemove: list = [" ","-",","
     """
         #Any character that may cause discrepancies between correct inputs.
 
-    for character in charRemove:
+    for character in char_remove:
         # Remove the unnecessary characters by replacing them with nothing
-        stringA = stringA.replace(character, '')
-        stringB = stringB.replace(character, '')
-    
-    return stringA.lower() == stringB.lower()
+        string_a = string_a.replace(character, '')
+        string_b = string_b.replace(character, '')
 
-def riddleCheck(riddle: Riddle,player_response: str) -> bool:
-    """Checks if the resonse to a riddle is the correct answer. 
+    return string_b.lower() == string_a.lower()
+
+def riddle_check(riddle: Riddle,player_response: str) -> bool:
+    """Checks if the resonse to a riddle is the correct answer.
     Returns true if correct
 
     riddle: Riddle
@@ -34,9 +35,9 @@ def riddleCheck(riddle: Riddle,player_response: str) -> bool:
     player_response: str
         The users response to the riddle
     """
-    return stringComparison(riddle.answer, player_response)
+    return string_comparison(riddle.answer, player_response)
 
-def awardPoints(username: str, points: int) -> bool:
+def award_points(username: str, points: int) -> bool:
     """Awards points to a selected user
     Returns true if applied
 
@@ -50,12 +51,12 @@ def awardPoints(username: str, points: int) -> bool:
         # get the users database insert
 
     if user is not None:
-        retrievedPoints = user.profile.total_points
+        retrieved_points = user.profile.total_points
             # Retrieve points from the database
-        user.profile.total_points = retrievedPoints + points
+        user.profile.total_points = retrieved_points + points
             # Add the points given
         user.save()
             # Apply changes
         applied = True
-
+        print("Added points!")
     return applied
