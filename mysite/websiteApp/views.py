@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 import websiteApp.lib.websiteApp.codebase as gameBase
 from django.contrib.auth import logout
-
+from django.shortcuts import redirect
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
@@ -17,7 +17,7 @@ def index(request):
 def login(request):
     context = {}
     if request.method == 'POST':
-        #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
+        print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
         user = authenticate(email=given_username, password=given_password)
@@ -26,7 +26,8 @@ def login(request):
             request.session['logged_in'] = True
         else:
             context['invalid_login'] = True
-
+            
+    print(request.session.get('logged_in', False))
     context['logged_in'] = request.session.get('logged_in', False)
     return render(request, 'websiteApp/login.html', context)
 
@@ -61,8 +62,8 @@ def register(request):
     return render(request, 'websiteApp/register.html', context)
 
 def logout(request):
-    request.session['logged_in'] = False
-    return HttpResponseRedirect('/login/')
+    request.session.flush()
+    return redirect('/login/')
 
 def game(request):
     riddle = Riddle.objects.order_by('pk')[0]
