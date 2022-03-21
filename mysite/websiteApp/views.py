@@ -20,7 +20,6 @@ def login(request):
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
         user = authenticate(email=given_username, password=given_password)
-            # /\ Something isnt working here, look into
         if user is not None:
             request.session['username']= user.username
             request.session['logged_in'] = True
@@ -32,13 +31,14 @@ def login(request):
 
 def register(request):
     context = {}
-
+    #Add email verification
     if request.method == 'POST':
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         passwordA = request.POST.get('password1')
         passwordB = request.POST.get('password2')
 
         if passwordA == passwordB:
+            #Password vadidation
             given_username = request.POST.get('username')
             given_email = request.POST.get('email')
             try:
