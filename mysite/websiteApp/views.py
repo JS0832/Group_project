@@ -17,7 +17,7 @@ def index(request):
 def login(request):
     context = {}
     if request.method == 'POST':
-        print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
+        #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
         user = authenticate(email=given_username, password=given_password)
@@ -27,7 +27,6 @@ def login(request):
         else:
             context['invalid_login'] = True
             
-    print(request.session.get('logged_in', False))
     context['logged_in'] = request.session.get('logged_in', False)
     return render(request, 'websiteApp/login.html', context)
 
