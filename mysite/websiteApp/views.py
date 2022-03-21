@@ -1,12 +1,13 @@
 from msilib.schema import ControlEvent
 import re
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import *
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 import websiteApp.lib.websiteApp.codebase as gameBase
+from django.contrib.auth import logout
 
 
 def index(request):
@@ -59,8 +60,8 @@ def register(request):
     context['logged_in'] = request.session.get('logged_in', False)
     return render(request, 'websiteApp/register.html', context)
 
-def logout_page(request):
-    logout(request)
+def logout(request):
+    request.session['logged_in'] = False
     return HttpResponseRedirect('/login/')
 
 def game(request):
