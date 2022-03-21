@@ -1,13 +1,12 @@
 from msilib.schema import ControlEvent
+import re
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import *
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 import websiteApp.lib.websiteApp.codebase as gameBase
-from django.contrib.auth.models import User
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
 
 def index(request):
     # Render simply returns the html, add contect for personalised changes
@@ -31,14 +30,13 @@ def login(request):
 
 def register(request):
     context = {}
-    #Add email verification
+
     if request.method == 'POST':
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         passwordA = request.POST.get('password1')
         passwordB = request.POST.get('password2')
 
         if passwordA == passwordB:
-            #Password vadidation
             given_username = request.POST.get('username')
             given_email = request.POST.get('email')
             try:

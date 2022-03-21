@@ -21,7 +21,6 @@
         <div class ="centered">
           <h1 id = "loginpos">Login</h1>
 	  <form method="POST" action="{% url 'login' %}" id = "form1">
-
       {% if invalid_login %}
           <h5 style="color:red"> Error: Username and password combination not found </h5> 
           <!-- TODO: Change colour as fits-->
