@@ -1,10 +1,12 @@
 """Views within Django structure, each function returns a HTML render
 of a website page"""
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 import websiteApp.lib.websiteApp.codebase as gameBase
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 from .models import *
 
 def index(request):
@@ -79,6 +81,10 @@ def register(request):
     context['logged_in'] = request.session.get('logged_in', False)
         # Find if they successfully logged in, if it cant be found, the default is false
     return render(request, 'websiteApp/register.html', context)
+
+def logout(request):
+    request.session.flush()
+    return redirect('/login/')
 
 def game(request):
     """Invoke to return HTML render of game page"""
