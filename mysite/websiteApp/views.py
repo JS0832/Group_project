@@ -20,7 +20,7 @@ def login(request):
         #print(pretty_request(request)) #DEBUG COMMAND: DO NOT INCLUDE WHILE LIVE!
         given_username = request.POST.get('username')
         given_password = request.POST.get('password')
-        user = authenticate(email=given_username, password=given_password)
+        user = authenticate(username=given_username, password=given_password)
         if user is not None:
             request.session['username']= user.username
             request.session['logged_in'] = True
