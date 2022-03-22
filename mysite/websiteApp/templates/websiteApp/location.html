@@ -23,9 +23,9 @@
     function movePointToLocation(latitude, longitude) {
         var geoLatDist = geoLatLeft - geoLatRight;
         var geoLongDist = geoLongTop - geoLongBottom;
-
-        console.log(geoLatDist, geoLongDist)
-        console.log((latitude - geoLatLeft),(longitude - geoLongTop))
+            console.log(latitude,longitude)
+       // console.log(geoLatDist, geoLongDist)
+        //console.log((latitude - geoLatLeft),(longitude - geoLongTop))
         var userRelDown =  (latitude - geoLatLeft) / geoLatDist * -1;
         var userRelAcross = (longitude - geoLongTop) / geoLongDist * -1;
 
@@ -33,7 +33,11 @@
 
         if (userRelAcross > 0 && userRelAcross < 1 && userRelDown > 0 && userRelDown < 1){
             placeLocation(userRelAcross, userRelDown);
+            //this block of code does not execute at all so im guessing
+            // it thinks we are out of bounds but actually we are
+            // in harrison now so it should work
         }
+
     }
 
     function placeLocation(normX, normY){
@@ -43,18 +47,20 @@
         var pointerX = (normX * (mapContainer.clientWidth)-2)+"px";
         var pointerY = (normY * (mapContainer.clientHeight)-2)+"px";
 
+        window.alert("it worked")
+
         pointer.style.left = pointerX;
         pointer.style.top = pointerY;
     }
 
     window.onload=function (){
-        /** TEST IF GEOLOCATION WORKING
+
         if('geolocation' in navigator) {
             window.alert("Geolocation Available")
         } else {
             window.alert("Geolocation Not Available")
         }
-        */
+
     }
 </script>
 </head>
