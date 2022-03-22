@@ -34,7 +34,7 @@
         if (userRelAcross > 0 && userRelAcross < 1 && userRelDown > 0 && userRelDown < 1){
             placeLocation(userRelAcross, userRelDown);
         }
-    };
+    }
 
     function placeLocation(normX, normY){
         var mapContainer = document.getElementById("map-container");
@@ -45,7 +45,7 @@
 
         pointer.style.left = pointerX;
         pointer.style.top = pointerY;
-    };
+    }
 
     window.onload=function (){
         /** TEST IF GEOLOCATION WORKING
@@ -75,7 +75,7 @@
 <br><br><br>
 <div id="map-container">
     <img id ="map-image" src="{% static 'map.png' %}" alt="img">
-    <img id="pointer" src="{% static 'red_dot.png' %}" alt="img">
+    <img id="pointer" src="{% static 'red_dot.png' %}" alt="img" style = "height: 2% ;width: 2%">
 
 </div>
 <!--
