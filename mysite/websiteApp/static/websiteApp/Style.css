@@ -107,3 +107,8 @@ ul li{
   height: 40%;
   width: 40%;
 }
+
+#googleMap{
+  display: flex;
+  justify-content: center;
+}
