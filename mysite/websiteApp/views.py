@@ -104,7 +104,7 @@ def game(request):
             if request.session['username'] is not None:
                 # /\ Can use logged in session. Talk about which is best
                 # If the user is logged in
-                gameBase.award_points(request.session['username'], 100)
+                gameBase.award_points(request.session['username'], riddle.points)
                     #Potentially vary points, do so here
             not_done_riddle = False
 
