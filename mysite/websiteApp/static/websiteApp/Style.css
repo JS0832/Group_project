@@ -2,9 +2,11 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 body{
   background-image: url("uox.jpg");
 }
+
 a:link, a:visited{
   text-decoration: none;
   color: black;
@@ -15,6 +17,7 @@ a:link, a:visited{
   text-align: center;
   padding: 4px;
 }
+
 a:hover,a:active{
   background-color: dimgray;
 }
@@ -29,6 +32,7 @@ a:hover,a:active{
   width: 50%;
   height: 50%;
 }
+
 #title_layout{
   vertical-align: middle;
   width: 50%;
@@ -49,11 +53,41 @@ ul li{
   margin: 20px;
 }
 
-#map{
+#map-container{
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 40%;
+  max-height: 60%;
+  max-width: 60%;
+  margin-left: 30%;
+  margin-right: 30%;
+  position: relative;
+}
 
-  position: center;
+#map-container #map-image{
+  position: relative;
+  display: block;
+  max-height: 100%;
   height:auto;
-  width:auto;
+  max-width: 100%;
+  width:100%;
+  border-style: solid;
+  border-color: rgb(93, 228, 89);
+  z-index: 1;
+}
+
+#map-container #pointer{
+  height: 4px;
+  width: 4px;
+  z-index: 2;
+  position: absolute;
+}
+
+#map{
+  position: center;
+  height: 40%;
+  width: 40%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -61,18 +95,13 @@ ul li{
   border-color: black;
   background-color: black;
 }
-#googleMap{
-  display: flex;
-  justify-content: center;
-}
+
 #riddle{
   text-align: center;
   background-color: yellow;
   border-width: 5px;
   border-color: black;
 }
-
-
 
 #backupimg{
   height: 40%;

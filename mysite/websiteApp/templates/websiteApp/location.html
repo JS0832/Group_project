@@ -2,43 +2,59 @@
 {% load static %}
 <html lang="en">
 <head>
+    <!-- GEOLOCATION COORDINATES:
+    TOP LEFT = 50.74017321339022, -3.5414134914587665
+    BOTOOM RIGHT = 50.73197722780606, -3.5245896012225106
+    -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'Style.css' %}">
     <title>Location</title>
     <script>
-    window.onload=function (){
-        var img= document.getElementById("img");
-        img.style.position="relative";
-        img.style.display= "block";
-        img.style.width="32px";
-        img.style.height="24px"
-        img.style.top="10px"
-        img.src="{% static 'red_dot.png' %}"
+    const watchID = navigator.geolocation.watchPosition((position) => {
+        movePointToLocation(position.coords.latitude, position.coords.longitude);
+    });
 
-        var btn0=document.getElementById("btn0");
-        btn0.addEventListener("click",function(){
-            var oldPosition=img.style.top.split("px")[0];
-            var newPosition=Number(oldPosition)-5;
-            img.style.top=newPosition+"px"
-        });
-        var btn1=document.getElementById("btn1");
-        btn1.addEventListener("click",function(){
-            var oldPosition=img.style.top.split("px")[0];
-            var newPosition=Number(oldPosition)+5;
-            img.style.top=newPosition+"px"
-        });
-        var btn2=document.getElementById("btn2");
-        btn2.addEventListener("click",function(){
-            var oldPosition=img.style.left.split("px")[0];
-            var newPosition=Number(oldPosition)-5;
-            img.style.left=newPosition+"px"
-        });
-        var btn3=document.getElementById("btn3");
-        btn3.addEventListener("click",function(){
-            var oldPosition=img.style.left.split("px")[0];
-            var newPosition=Number(oldPosition)+5;
-            img.style.left=newPosition+"px"
-        });
+    const geoLatLeft = 50.74017321339022;
+    const geoLatRight= 50.73197722780606;
+
+    const geoLongTop = -3.5414134914587665;
+    const geoLongBottom =  -3.5245896012225106;
+
+    function movePointToLocation(latitude, longitude) {
+        var geoLatDist = geoLatLeft - geoLatRight;
+        var geoLongDist = geoLongTop - geoLongBottom;
+
+        console.log(geoLatDist, geoLongDist)
+        console.log((latitude - geoLatLeft),(longitude - geoLongTop))
+        var userRelDown =  (latitude - geoLatLeft) / geoLatDist * -1;
+        var userRelAcross = (longitude - geoLongTop) / geoLongDist * -1;
+
+        console.log(userRelAcross, userRelDown);
+
+        if (userRelAcross > 0 && userRelAcross < 1 && userRelDown > 0 && userRelDown < 1){
+            placeLocation(userRelAcross, userRelDown);
+        }
+    };
+
+    function placeLocation(normX, normY){
+        var mapContainer = document.getElementById("map-container");
+        var pointer = document.getElementById("pointer");
+        
+        var pointerX = (normX * (mapContainer.clientWidth)-2)+"px";
+        var pointerY = (normY * (mapContainer.clientHeight)-2)+"px";
+
+        pointer.style.left = pointerX;
+        pointer.style.top = pointerY;
+    };
+
+    window.onload=function (){
+        /** TEST IF GEOLOCATION WORKING
+        if('geolocation' in navigator) {
+            window.alert("Geolocation Available")
+        } else {
+            window.alert("Geolocation Not Available")
+        }
+        */
     }
 </script>
 </head>
@@ -55,16 +71,13 @@
         <li><a href="{% url 'game' %}">Game</a></li>
         <li><a href="{% url 'campus_exploration' %}">Home</a></li>
     </ul>
-</div>>
-<div id="googleMap">
-    <img id ="backupimg" src="{% static 'map.png' %}" alt="img">
+</div>
+<br><br><br>
+<div id="map-container">
+    <img id ="map-image" src="{% static 'map.png' %}" alt="img">
+    <img id="pointer" src="{% static 'red_dot.png' %}" alt="img">
 
 </div>
-<img id="img" src="{% static 'red_dot.png' %}" alt="img">
-    <button id="btn0">Move Image</button>
-    <button id="btn1">Move bottom</button>
-    <button id="btn2">Move left</button>
-    <button id="btn3">Move right</button>
 <!--
 <script>
         function initMap()
