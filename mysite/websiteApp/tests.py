@@ -1,4 +1,6 @@
 from django.test import TestCase, Client
+from .models import *
+from django.utils import timezone
 
 # Create your tests here.
 class RegisterTest(TestCase):
@@ -88,6 +90,32 @@ class LoginTest(TestCase):
         self.assertEqual(self.client.session['username'], self.username, "Session username incorrect")
         self.assertTrue(self.client.session['logged_in'], "Session login state incorrect")
 
+class RiddleGameTest(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.email = "abc@example.com"
+        self.username = "test_case"
+        self.password = "abc"
+        self.client.post('/register/', { "email": self.email
+                                       , "username": self.username
+                                       , "password1": self.password
+                                       , "password2": self.password})
+        self.riddle_points = 5
+        Riddle.objects.create(question="question", answer="answer", time=timezone.now(), points=self.riddle_points, likes=0)
 
+    def test_riddle_game(self):
+        # Request riddle before solving
+        response = self.client.get('/game/')
+        self.assertTrue(response.context['not_done_riddle'])
+        self.assertEqual(response.context['riddle_text'], "question")
+        
+        # Get riddle wrong
+        response = self.client.post('/game/', {"answer":"not_the_answer"})
+        self.assertTrue(response.context['not_done_riddle'])
+        self.assertTrue(response.context['answer_wrong'])
 
-
+        # Get Riddle Correct
+        response = self.client.post('/game/', {"answer":"answer"})
+        self.assertFalse(response.context['not_done_riddle'])
+        self.assertFalse(response.context['answer_wrong'])
+        self.assertEqual(User.objects.get(username=self.username).profile.total_points, self.riddle_points)
