@@ -21,12 +21,12 @@
           padding: 8px;
         }
         
-        #leaderboard tr:nth-child(even){background-color: lightgreen}
-        #leaderboard tr:nth-child(odd){background-color: lightgray}
+        #leaderboard li:nth-child(even){background-color: lightgreen}
+        #leaderboard li:nth-child(odd){background-color: lightgray}
         
-        #leaderboard tr:hover {background-color: lightseagreen; color: white;}
+        #leaderboard li:hover {background-color: lightseagreen; color: white;}
         
-        #leaderboard th {
+        #leaderboard ol {
           padding-top: 12px;
           padding-bottom: 12px;
           text-align: center;
@@ -64,17 +64,20 @@
                         }
                     </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoQVVZb0-hZ9qn_Wgp9WpbgrCkwkylsVQ&callback=initMap"></script>
-        
-    <div id = "customers">
+            <br>
+            <br>
+            <br>
+    <div id="leaderboard">
 
-        <br>
-        <br>
-        <br>
-        <ul>
+
+        <ol>
             {% for user in leaderboard %}
-                <li>{{ user.username }}</li>
+            
+                <li>{{ user.username  }} |    {{ user.points  }}</li>
+                
+                
             {% endfor %}
-            </ul>
+            </ol>
     </div>
 </body>
 </html>
