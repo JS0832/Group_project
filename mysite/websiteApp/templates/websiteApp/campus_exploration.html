@@ -5,6 +5,35 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'Style_Campus_exploration.css' %}">
     <title>Campus Exploration</title>
+    <style>
+        #leaderboard {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+          font-size: 20pt;
+        }
+        
+        #leaderboard td, #leaderboard th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #leaderboard tr:nth-child(even){background-color: lightgreen}
+        #leaderboard tr:nth-child(odd){background-color: lightgray}
+        
+        #leaderboard tr:hover {background-color: lightseagreen; color: white;}
+        
+        #leaderboard th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
 </head>
 <body>
     <div id = "list"> 
@@ -36,6 +65,95 @@
                     </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoQVVZb0-hZ9qn_Wgp9WpbgrCkwkylsVQ&callback=initMap"></script>
         
-            
+    <div id = "customers">
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table id = "leaderboard">
+            <tr>
+                <th>Ranking</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>therock</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>frank08</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>uberalles</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>napoleon</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>lawrence_jenn</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>thor</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>loki</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>rvp11</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>verstappen</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>bojo2020</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>lebrooon</td>
+                <td>2</td>
+              </tr>
+        </table>
+    </div>
 </body>
 </html>
