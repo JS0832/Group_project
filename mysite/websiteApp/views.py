@@ -8,7 +8,7 @@ import websiteApp.lib.websiteApp.codebase as gameBase
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from .models import *
-
+import datetime 
 
 def index(request):
     """Invoke to return HTML render of index page"""
@@ -96,8 +96,11 @@ def logout(request):
 
 def game(request):
     """Invoke to return HTML render of game page"""
-    riddle = Riddle.objects.order_by('pk')[0]
-    # Just picks the first one, TODO: change daily
+    day_of_month = int(datetime.datetime.now().strftime("%d")) # Gets day of month as int
+    chosen_riddle = day_of_month % Riddle.objects.all().count() # Selects riddle, changes per day
+    # Never exceeds the number of riddles
+    riddle = Riddle.objects.order_by('pk')[chosen_riddle]
+
     not_done_riddle = True
     answer_wrong = False
     riddle_text = riddle.question
