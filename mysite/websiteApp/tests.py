@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 
 # Create your tests here.
-class AccountTest(TestCase):
+class RegisterTest(TestCase):
     def setUp(self) -> None:
         self.client1 = Client()
         self.client2 = Client()
