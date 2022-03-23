@@ -7,13 +7,21 @@
     <list default="true" id="4dcb7cdd-b7b4-4d8f-af14-727ef9e6c44b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/websiteApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/websiteApp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/Settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/settings.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/campus_exploration.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/campus_exploration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/location.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/websiteApp/templates/websiteApp/location.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,6 +36,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -71,12 +80,23 @@
       <workItem from="1647960978438" duration="211000" />
       <workItem from="1647961202592" duration="6807000" />
       <workItem from="1647971442851" duration="3516000" />
-      <workItem from="1648060879564" duration="1190000" />
+      <workItem from="1648060879564" duration="2521000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
