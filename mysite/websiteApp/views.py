@@ -146,7 +146,7 @@ def location(request):
 def campus_exploration(request):
     """Invoke to return HTML render of campus exploration page"""
     context = {}
-    context['leaderboard'] = Leaderboard.objects.order_by('points')
+    context['leaderboard'] = Leaderboard.objects.order_by('-points')
     
     #for leaderboard in context['leaderboard']:
         # print(leaderboard.username)
