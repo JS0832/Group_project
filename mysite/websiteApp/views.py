@@ -59,7 +59,7 @@ def register(request):
 
             given_username = request.POST.get('username')
             given_email = request.POST.get('email')
-            if given_username != "" and given_email != "":
+            if given_username != "" and given_email != "" and password_a != "":
                 # Retrieve the username and email from the HTML form
                 try:
                     # Attempt to do the following
