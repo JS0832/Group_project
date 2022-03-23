@@ -85,6 +85,7 @@ def register(request):
             # Notify the HTML that passwords were not the same
 
     context['logged_in'] = request.session.get('logged_in', False)
+
     # Find if they successfully logged in, if it cant be found, the default is false
     return render(request, 'websiteApp/register.html', context)
 
@@ -101,6 +102,12 @@ def game(request):
     # Never exceeds the number of riddles
     riddle = Riddle.objects.order_by('pk')[chosen_riddle]
 
+    try:
+        username = request.session['username']
+        not_logged_in = False
+    except KeyError:
+        not_logged_in = True
+
     not_done_riddle = True
     answer_wrong = False
     riddle_text = riddle.question
@@ -112,10 +119,10 @@ def game(request):
         # Retrieve the given answer from the HTML form
         if gameBase.riddle_check(riddle, response):
             # If the users response is the same as the riddle answer
-            if request.session['username'] is not None:
+            if username is not None:
                 # /\ Can use logged in session. Talk about which is best
                 # If the user is logged in
-                gameBase.award_points(request.session['username'], riddle.points)
+                gameBase.award_points(username, riddle.points)
                 # Potentially vary points, do so here
             not_done_riddle = False
 
@@ -126,6 +133,7 @@ def game(request):
         'not_done_riddle': not_done_riddle,
         'answer_wrong': answer_wrong,
         'riddle_text': riddle_text,
+        'not_logged_in': not_logged_in
     }
     return render(request, 'websiteApp/game.html', context)
 

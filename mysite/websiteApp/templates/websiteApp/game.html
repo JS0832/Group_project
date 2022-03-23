@@ -2,6 +2,10 @@
 {% load static %}
 <html lang="en">
 <head>
+    {% if not_logged_in %}
+    <meta http-equiv="refresh" content="0; URL={% url 'login' %}" />
+        <!-- TODO: set up main page and navigate there -->
+    {% endif %}
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'Style.css' %}">
     <title>Game</title>
