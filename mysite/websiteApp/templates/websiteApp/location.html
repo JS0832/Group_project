@@ -47,20 +47,17 @@
         var pointerX = (normX * (mapContainer.clientWidth)-2)+"px";
         var pointerY = (normY * (mapContainer.clientHeight)-2)+"px";
 
-        window.alert("it worked")
+        //window.alert("it worked")
 
         pointer.style.left = pointerX;
         pointer.style.top = pointerY;
     }
 
     window.onload=function (){
-
-        if('geolocation' in navigator) {
-            window.alert("Geolocation Available")
-        } else {
+        if ('geolocation'  in navigator){
+        }else{
             window.alert("Geolocation Not Available")
         }
-
     }
 </script>
 </head>
@@ -71,7 +68,7 @@
 <div id="nav">
     <ul class="nav">
         <li><a href="{% url 'settings' %}">Settings</a></li>
-        <li><a href="{% url 'login' %}">Logout</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
         <li><a href="{% url 'location' %}">Location</a></li>
         <li><a href="{% url 'introduce' %}">Introduction</a></li>
         <li><a href="{% url 'game' %}">Game</a></li>
