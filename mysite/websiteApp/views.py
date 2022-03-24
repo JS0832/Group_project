@@ -147,6 +147,7 @@ def campus_exploration(request):
     """Invoke to return HTML render of campus exploration page"""
     context = {}
     context['leaderboard'] = Profile.objects.order_by('-total_points')
+
     
     for leaderboard in context['leaderboard']:
         print(leaderboard.user.username)
