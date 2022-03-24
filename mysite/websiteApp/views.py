@@ -146,10 +146,11 @@ def location(request):
 def campus_exploration(request):
     """Invoke to return HTML render of campus exploration page"""
     context = {}
-    context['leaderboard'] = Leaderboard.objects.order_by('-points')
+    context['leaderboard'] = Profile.objects.order_by('-total_points')
+
     
-    #for leaderboard in context['leaderboard']:
-        # print(leaderboard.username)
+    for leaderboard in context['leaderboard']:
+        print(leaderboard.user.username)
 
     return render(request, 'websiteApp/campus_exploration.html', context)
 

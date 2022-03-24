@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'Style_Campus_exploration.css' %}">
-    <title>Campus Exploration</title>
     <style>
         #leaderboard {
           font-family: Arial, Helvetica, sans-serif;
@@ -31,9 +30,61 @@
           padding-bottom: 12px;
           text-align: center;
           background-color: #04AA6D;
-          color: white;
+          color: rgb(20, 20, 20);
         }
-        </style>
+    </style>
+    <title>Campus Exploration</title>
+    <script>
+        const watchID = navigator.geolocation.watchPosition((position) => {
+            movePointToLocation(position.coords.latitude, position.coords.longitude);
+        });
+    
+        const geoLatLeft = 50.74017321339022;
+        const geoLatRight= 50.73197722780606;
+    
+        const geoLongTop = -3.5414134914587665;
+        const geoLongBottom =  -3.5245896012225106;
+    
+        function movePointToLocation(latitude, longitude) {
+            var geoLatDist = geoLatLeft - geoLatRight;
+            var geoLongDist = geoLongTop - geoLongBottom;
+                console.log(latitude,longitude)
+           // console.log(geoLatDist, geoLongDist)
+            //console.log((latitude - geoLatLeft),(longitude - geoLongTop))
+            var userRelDown =  (latitude - geoLatLeft) / geoLatDist * -1;
+            var userRelAcross = (longitude - geoLongTop) / geoLongDist * -1;
+    
+            console.log(userRelAcross, userRelDown);
+    
+            if (userRelAcross > 0 && userRelAcross < 1 && userRelDown > 0 && userRelDown < 1){
+                placeLocation(userRelAcross, userRelDown);
+                //this block of code does not execute at all so im guessing
+                // it thinks we are out of bounds but actually we are
+                // in harrison now so it should work
+            }
+    
+        }
+    
+        function placeLocation(normX, normY){
+            var mapContainer = document.getElementById("map-container");
+            var pointer = document.getElementById("pointer");
+            
+            var pointerX = (normX * (mapContainer.clientWidth)-2)+"px";
+            var pointerY = (normY * (mapContainer.clientHeight)-2)+"px";
+    
+            //window.alert("it worked")
+    
+            pointer.style.left = pointerX;
+            pointer.style.top = pointerY;
+        }
+    
+        window.onload=function (){
+            if ('geolocation'  in navigator){
+            }else{
+                window.alert("Geolocation Not Available")
+            }
+        }
+    </script>
 </head>
 <body>
     <div id = "list"> 
@@ -50,34 +101,22 @@
     <br>
     <br>
     <br>
-    <div id="map"></div>
-                <script>
-                        function initMap()
-                        {
-                            var options = {
-                                zoom:8,
-                                centre:{lat:50.7184,lng:3.5339}
-                                 
-                            }
-                            var map = new
-                            google.maps.Map(document.getElementById('map'),options);
-                        }
-                    </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoQVVZb0-hZ9qn_Wgp9WpbgrCkwkylsVQ&callback=initMap"></script>
-            <br>
-            <br>
-            <br>
+    <br>
+    <br>
+    <br>
+    <div id="map-container">
+        <img id ="map-image" src="{% static 'map.png' %}" alt="img">
+        <img id="pointer" src="{% static 'red_dot.png' %}" alt="img" style = "height: 2% ;width: 2%">
+    </div>
+    <br>
+    <br>
+        
     <div id="leaderboard">
-
-
         <ol>
             {% for user in leaderboard %}
-            
-                <li>{{ user.username  }} |    {{ user.points  }}</li>
-                
-                
+                <li>{{ user.user.username  }} |    {{ user.total_points  }}</li>
             {% endfor %}
-            </ol>
+        </ol>
     </div>
 </body>
 </html>
